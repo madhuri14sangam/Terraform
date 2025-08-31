@@ -42,14 +42,6 @@ resource "aws_instance" "web" {
   vpc_security_group_ids      = [aws_security_group.web.id]
   associate_public_ip_address = true
   tags = { Name = "iac-web" }
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo -i
-              sudo yum update -y
-              sudo amazon-linux-extras install nginx1 -y
-              sudo systemctl start nginx
-              sudo systemctl enable nginx
-              sudo systemctl status nginx
-              EOF
+  user_data = "${file("install_nginx.sh")}"
 }
 
