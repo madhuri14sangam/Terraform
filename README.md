@@ -6,6 +6,12 @@
 * 3 private subnets with no direct Internet egress
 * 1 EC2 instance in a public subnet with port 80 open from the Internet
 
+## Prerequisites: AWS IAM permissions for Terraform.
+* For this project to run successfully, need a AWS user with the correct permissions.
+* Need a IAM user and role with a custom policy that grants only the permissions.
+* Configure your AWS Credentials and enter the Access Key ID and Secret Access key of the user you created.
+* Project is configured to use AWS Systems Manager for access to EC2,Required a IAM role along with port 443.
+
 ## Usage
 ```bash
 terraform init
