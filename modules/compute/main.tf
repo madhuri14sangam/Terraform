@@ -42,6 +42,6 @@ resource "aws_instance" "web" {
   vpc_security_group_ids      = [aws_security_group.web.id]
   associate_public_ip_address = true
   tags = { Name = "iac-web" }
-  user_data = "${file("install_nginx.sh")}"
+  user_data = file("${path.module}/install_nginx.sh")
 }
 
