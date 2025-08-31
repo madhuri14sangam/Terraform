@@ -45,7 +45,7 @@ resource "aws_instance" "web" {
   user_data = <<EOF
               #!/bin/bash
               sudo yum update -y
-              sudo yum install nginx -y 
+              sudo amazon-linux-extras install nginx1 -y
               cat << 'EOT' > /etc/nginx/conf.d/custom.conf
               server {
                   listen 80;
