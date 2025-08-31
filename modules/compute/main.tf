@@ -44,17 +44,9 @@ resource "aws_instance" "web" {
   tags = { Name = "iac-web" }
   user_data = <<EOF
               #!/bin/bash
+              sudo -i
               sudo yum update -y
               sudo amazon-linux-extras install nginx1 -y
-              cat << 'EOT' > /etc/nginx/conf.d/custom.conf
-              server {
-                  listen 80;
-                  location / {
-                        root   /usr/share/nginx/html;
-                        index  index.html index.htm;
-                        }
-                      }
-                      EOT
               sudo systemctl start nginx
               sudo systemctl enable nginx
               sudo systemctl status nginx
