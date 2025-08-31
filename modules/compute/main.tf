@@ -45,7 +45,16 @@ resource "aws_instance" "web" {
   user_data = <<EOF
               #!/bin/bash
               sudo yum update -y
-              sudo yum install nginx -y
+              sudo yum install nginx -y 
+              cat << 'EOT' > /etc/nginx/conf.d/custom.conf
+              server {
+                  listen 80;
+                  location / {
+                        root   /usr/share/nginx/html;
+                        index  index.html index.htm;
+                        }
+                      }
+                      EOT
               sudo systemctl start nginx
               sudo systemctl enable nginx
               sudo systemctl status nginx
